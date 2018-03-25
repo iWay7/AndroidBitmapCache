@@ -25,7 +25,7 @@ dependencies {
 ```
 BitmapCache.setIsDebugMode(BuildConfig.DEBUG); // 设置是否为调试模式
 BitmapCache.setLoaderCount(2); // 设置加载器的数量，数量越多意味着可同时加载的图片越多
-BitmapCache.setMaxRAMUsage(DeviceHelper.getHeapGrowthLimit(this); // 设置最大的内存使用量
+BitmapCache.setMaxRAMUsage(DeviceHelper.getHeapGrowthLimit(this)/3); // 设置最大的内存使用量
 BitmapCache.setMaxRAMUsageForSingleBitmap(2 * 1024 * 1024); // 设置单张图片最大的内存使用量
 BitmapCache.setLoaderThreadPriority(Thread.NORM_PRIORITY); // 设置加载器线程优先级
 BitmapCache.setUrlConnectTimeout(20 * 1000); // 设置网络连接超时
