@@ -1,6 +1,10 @@
 # AndroidBitmapCache
 Android 轻量图片缓存框架。
 
+### 本应用的示例
+
+![image](https://github.com/iWay7/AndroidBitmapCache/blob/master/sample.gif)   
+
 ### 简单的集成方式
 
 #### 第一步：在你的项目 build.gradle 添加 maven 库：
@@ -17,13 +21,13 @@ allprojects {
 ```
 dependencies {
     ...
-    compile 'com.github.iWay7:AndroidHelpers:1.0.1'
+    compile 'com.github.iWay7:AndroidHelpers:1.0.2'
 }
 ```
 
 #### 第三步：在 Application 的 onCreate 方法中初始化：
 ```
-BitmapCache.setIsDebugMode(BuildConfig.DEBUG); // 设置是否为调试模式
+BitmapCache.setIsDebugMode(BuildConfig.DEBUG); // 设置是否为调试模式，调试模式将在 Logcat 输出信息
 BitmapCache.setLoaderCount(2); // 设置加载器的数量，数量越多意味着可同时加载的图片越多
 BitmapCache.setMaxRAMUsage(DeviceHelper.getHeapGrowthLimit(this)/3); // 设置最大的内存使用量
 BitmapCache.setMaxRAMUsageForSingleBitmap(2 * 1024 * 1024); // 设置单张图片最大的内存使用量
@@ -33,6 +37,11 @@ BitmapCache.setUrlReadTimeout(20 * 1000); // 设置网络读取超时
 BitmapCache.setUrlRetryCount(1); // 设置网络连接失败重试次数
 BitmapCache.setDownloadDirectoryByContext(this, "BmpCache"); // 设置缓存目录的名称
 BitmapCache.initialize(this); // 执行初始化
+```
+
+#### 第四步：添加 INTERNET 权限，如果没有的话：
+```
+<uses-permission android:name="android.permission.INTERNET" />
 ```
 
 #### 然后就可以开心的使用啦：
@@ -71,7 +80,7 @@ bitmapView.loadFromFileSource(...);  // 从文件加载
 bitmapView.loadFromResourceSource(...); // 从资源加载
 ```
 
-##### 您也可以自定义滤镜，例如可以对图片进行高斯模糊：
+##### 支持自定义滤镜，例如可以对图片进行高斯模糊：
 ```
 // 首先声明一个滤镜
 private BitmapFilter mBitmapFilter = new BitmapFilter() {
