@@ -5,25 +5,7 @@ Android 轻量图片缓存框架。
 
 ![image](https://github.com/iWay7/AndroidBitmapCache/blob/master/sample.gif)   
 
-### 简单的集成方式
-
-#### 第一步：在你的项目 build.gradle 添加 maven 库：
-```
-allprojects {
-    repositories {
-        ...
-        maven { url 'https://www.jitpack.io' }
-    }
-}
-```
-
-#### 第二步：在你的模块 build.gradle 添加依赖库：
-```
-dependencies {
-    ...
-    api 'com.github.iWay7:AndroidHelpers:1.0.4'
-}
-```
+### 本示例基于 AndroidHelper 库，访问 https://github.com/iWay7/AndroidHelpers 添加依赖。
 
 #### 第三步：在 Application 的 onCreate 方法中初始化：
 ```
