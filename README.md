@@ -7,7 +7,7 @@ Android 轻量图片缓存框架。
 
 ### 本示例基于 AndroidHelper 库，访问 https://github.com/iWay7/AndroidHelpers 添加依赖。
 
-#### 第三步：在 Application 的 onCreate 方法中初始化：
+#### 第一步：在 Application 的 onCreate 方法中初始化：
 ```
 BitmapCache.setIsDebugMode(BuildConfig.DEBUG); // 设置是否为调试模式，调试模式将在 Logcat 输出信息
 BitmapCache.setLoaderCount(2); // 设置加载器的数量，数量越多意味着可同时加载的图片越多
@@ -21,7 +21,7 @@ BitmapCache.setDownloadDirectoryByContext(this, "BmpCache"); // 设置缓存目�
 BitmapCache.initialize(this); // 执行初始化
 ```
 
-#### 第四步：添加 INTERNET 权限，如果没有的话：
+#### 第二步：添加 INTERNET 权限，如果没有的话：
 ```
 <uses-permission android:name="android.permission.INTERNET" />
 ```
