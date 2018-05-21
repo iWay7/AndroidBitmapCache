@@ -5,7 +5,7 @@ Android 轻量图片缓存框架。
 
 ![image](https://github.com/iWay7/AndroidBitmapCache/blob/master/sample.gif)   
 
-### 本示例基于 AndroidHelper 库，访问 https://github.com/iWay7/AndroidHelpers 添加依赖。
+### 本示例基于 AndroidHelpers 库，访问 https://github.com/iWay7/AndroidHelpers 添加依赖。
 
 #### 第一步：在 Application 的 onCreate 方法中初始化：
 ```
