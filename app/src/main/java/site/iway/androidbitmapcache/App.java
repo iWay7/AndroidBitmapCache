@@ -15,6 +15,7 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        BitmapCache.setContext(this);
         BitmapCache.setIsDebugMode(BuildConfig.DEBUG);
         BitmapCache.setLoaderCount(2);
         BitmapCache.setLoaderThreadPriority(Thread.NORM_PRIORITY);
@@ -22,7 +23,6 @@ public class App extends Application {
         BitmapCache.setMaxRamUsageOfAllBitmaps(DeviceHelper.getHeapGrowthLimit(this) / 2);
         BitmapCache.setDownloaderClass(HttpFileDownloader.class);
         BitmapCache.setDownloadDirectory("BitmapCache");
-        BitmapCache.setContext(this);
         BitmapCache.initialize();
     }
 }
