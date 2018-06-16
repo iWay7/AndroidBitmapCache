@@ -10,15 +10,14 @@ Android 轻量图片缓存框架。
 #### 第一步：在 Application 的 onCreate 方法中初始化：
 ```
 BitmapCache.setIsDebugMode(BuildConfig.DEBUG); // 设置是否为调试模式，调试模式将在 Logcat 输出信息
+BitmapCache.setContext(this); // 设置文件下载目录
 BitmapCache.setLoaderCount(2); // 设置加载器的数量，数量越多意味着可同时加载的图片越多
-BitmapCache.setMaxRAMUsage(DeviceHelper.getHeapGrowthLimit(this) / 3); // 设置最大的内存使用量
-BitmapCache.setMaxRAMUsageForSingleBitmap(2 * 1024 * 1024); // 设置单张图片最大的内存使用量
 BitmapCache.setLoaderThreadPriority(Thread.NORM_PRIORITY); // 设置加载器线程优先级
-BitmapCache.setUrlConnectTimeout(20 * 1000); // 设置网络连接超时
-BitmapCache.setUrlReadTimeout(20 * 1000); // 设置网络读取超时
-BitmapCache.setUrlRetryCount(1); // 设置网络连接失败重试次数
-BitmapCache.setDownloadDirectoryByContext(this, "BmpCache"); // 设置缓存目录的名称
-BitmapCache.initialize(this); // 执行初始化
+BitmapCache.setMaxRAMUsageForSingleBitmap(8 * 1024 * 1024); // 设置单张图片最大的内存使用量
+BitmapCache.setMaxRamUsageOfAllBitmaps(DeviceHelper.getHeapGrowthLimit(this) / 2); // 设置最大的内存使用量
+BitmapCache.setDownloaderClass(HttpFileDownloader.class); // 设置文件下载器
+BitmapCache.setDownloadDirectory("BitmapCache"); // 设置文件下载缓存目录名称或自定义的目录
+BitmapCache.initialize(); // 执行初始化
 ```
 
 #### 第二步：添加 INTERNET 权限，如果没有的话：
@@ -68,16 +67,16 @@ bitmapView.loadFromResourceSource(...); // 从资源加载
 private BitmapFilter mBitmapFilter = new BitmapFilter() {
     private int mBlurRadius = 10;
     
+    // 滤镜的识别码，注意，如果滤镜有内部参数，则必须在名称中做区分
+    @Override
+    public String id() {
+        return "blur-" + mBlurRadius;
+    }
+    
     // 滤镜的处理过程
     @Override
     public Bitmap filter(Bitmap bitmap) {
         return BitmapHelper.blur(bitmap, mBlurRadius);
-    }
-    
-    // 滤镜的名称，注意，如果滤镜有内部参数，则必须在名称中做区分
-    @Override
-    public String toString() {
-        return "blur-" + mBlurRadius;
     }
 };
 

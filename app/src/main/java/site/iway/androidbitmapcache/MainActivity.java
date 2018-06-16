@@ -8,7 +8,6 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 
 import site.iway.androidhelpers.BitmapSource;
-import site.iway.androidhelpers.BitmapSourceURL;
 import site.iway.androidhelpers.BitmapView;
 import site.iway.androidhelpers.WindowHelper;
 
@@ -42,7 +41,7 @@ public class MainActivity extends Activity {
         @Override
         public BitmapSource getItem(int position) {
             String url = "http://home.iway.site:8888/test/images/image%20(" + (position + 1) + ").jpg";
-            return new BitmapSourceURL(url, null);
+            return new BitmapSource(BitmapSource.TYPE_URL, url, null);
         }
 
         @Override
