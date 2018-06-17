@@ -35,12 +35,12 @@ public class MainActivity extends Activity {
 
         @Override
         public int getCount() {
-            return 157;
+            return 157 * 8;
         }
 
         @Override
         public BitmapSource getItem(int position) {
-            String url = "http://home.iway.site:8888/test/images/image%20(" + (position + 1) + ").jpg";
+            String url = "http://home.iway.site:8888/test/images/image%20(" + (position % 157 + 1) + ").jpg?position=" + position;
             return new BitmapSource(BitmapSource.TYPE_URL, url, null);
         }
 

@@ -9,14 +9,13 @@ Android 轻量图片缓存框架。
 
 #### 第一步：在 Application 的 onCreate 方法中初始化：
 ```
-BitmapCache.setIsDebugMode(BuildConfig.DEBUG); // 设置是否为调试模式，调试模式将在 Logcat 输出信息
-BitmapCache.setContext(this); // 设置文件下载目录
-BitmapCache.setLoaderCount(2); // 设置加载器的数量，数量越多意味着可同时加载的图片越多
-BitmapCache.setLoaderThreadPriority(Thread.NORM_PRIORITY); // 设置加载器线程优先级
-BitmapCache.setMaxRAMUsageForSingleBitmap(8 * 1024 * 1024); // 设置单张图片最大的内存使用量
-BitmapCache.setMaxRamUsageOfAllBitmaps(DeviceHelper.getHeapGrowthLimit(this) / 2); // 设置最大的内存使用量
-BitmapCache.setDownloaderClass(HttpFileDownloader.class); // 设置文件下载器
-BitmapCache.setDownloadDirectory("BitmapCache"); // 设置文件下载缓存目录名称或自定义的目录
+BitmapCache.setContext(this); // 设置上下文对象
+BitmapCache.setLoaderCount(2); // 设置加载器的数量，数量越多意味着可同时加载的图片越多，非必需
+BitmapCache.setLoaderThreadPriority(Thread.NORM_PRIORITY); // 设置加载器线程优先级，非必需
+BitmapCache.setMaxRAMUsageForSingleBitmap(8 * 1024 * 1024); // 设置单张图片最大的内存使用量，非必需
+BitmapCache.setMaxRamUsageOfAllBitmaps(DeviceHelper.getHeapGrowthLimit(this) / 2); // 设置最大的内存使用量，非必需
+BitmapCache.setDownloaderClass(HttpFileDownloader.class); // 设置文件下载器，非必需
+BitmapCache.setDownloadDirectory("BitmapCache"); // 设置文件下载缓存目录名称或自定义的目录，非必需
 BitmapCache.initialize(); // 执行初始化
 ```
 
