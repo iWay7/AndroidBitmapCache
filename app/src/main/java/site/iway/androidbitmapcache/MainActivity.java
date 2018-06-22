@@ -7,13 +7,12 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 
-import site.iway.androidhelpers.BitmapSource;
 import site.iway.androidhelpers.BitmapView;
+import site.iway.androidhelpers.UnitHelper;
 import site.iway.androidhelpers.WindowHelper;
 
 public class MainActivity extends Activity {
 
-    private int mScreenWidth;
     private int mGridSideLength;
 
     private GridView mGridView;
@@ -23,11 +22,9 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mScreenWidth = WindowHelper.getScreenWidth(this);
-        mGridSideLength = mScreenWidth / 2;
+        mGridSideLength = WindowHelper.getScreenWidth(this) / 2 - UnitHelper.dipToPxInt(5) * 2;
 
         mGridView = (GridView) findViewById(R.id.gridView);
-        mGridView.setNumColumns(2);
         mGridView.setAdapter(mGridViewAdapter);
     }
 
@@ -39,9 +36,8 @@ public class MainActivity extends Activity {
         }
 
         @Override
-        public BitmapSource getItem(int position) {
-            String url = "http://home.iway.site:8888/test/images/image%20(" + (position % 157 + 1) + ").jpg?position=" + position;
-            return new BitmapSource(BitmapSource.TYPE_URL, url, null);
+        public String getItem(int position) {
+            return "http://home.iway.site:8888/test/images/image%20(" + (position % 157 + 1) + ").jpg?position=" + position;
         }
 
         @Override
@@ -54,11 +50,11 @@ public class MainActivity extends Activity {
             if (convertView == null) {
                 convertView = getLayoutInflater().inflate(R.layout.list_item_bitmap_cache, mGridView, false);
                 convertView.getLayoutParams().width = mGridSideLength;
-                convertView.getLayoutParams().height = (mGridSideLength - 20) * 1200 / 1920 + 20;
+                convertView.getLayoutParams().height = (mGridSideLength - UnitHelper.dipToPxInt(5) * 2) * 1200 / 1920 + 20;
             }
 
             BitmapView bitmapView = (BitmapView) convertView.findViewById(R.id.bitmapView);
-            bitmapView.loadFromSource(getItem(position));
+            bitmapView.loadFromURLSource(getItem(position));
 
             return convertView;
         }

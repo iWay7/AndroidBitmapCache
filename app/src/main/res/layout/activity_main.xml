@@ -3,4 +3,7 @@
     android:id="@+id/gridView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center" />
+    android:clipToPadding="false"
+    android:gravity="center"
+    android:numColumns="2"
+    android:padding="5dp" />
