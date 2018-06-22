@@ -8,12 +8,11 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 
 import site.iway.androidhelpers.BitmapView;
-import site.iway.androidhelpers.UnitHelper;
 import site.iway.androidhelpers.WindowHelper;
 
 public class MainActivity extends Activity {
 
-    private int mGridSideLength;
+    private int mGridItemWidth;
 
     private GridView mGridView;
 
@@ -22,17 +21,20 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mGridSideLength = WindowHelper.getScreenWidth(this) / 2 - UnitHelper.dipToPxInt(5) * 2;
-
         mGridView = (GridView) findViewById(R.id.gridView);
         mGridView.setAdapter(mGridViewAdapter);
+
+        int windowWidth = WindowHelper.getScreenWidth(this);
+        int paddingLeft = mGridView.getPaddingLeft();
+        int paddingRight = mGridView.getPaddingRight();
+        mGridItemWidth = (windowWidth - paddingLeft - paddingRight) / 2;
     }
 
     private BaseAdapter mGridViewAdapter = new BaseAdapter() {
 
         @Override
         public int getCount() {
-            return 157 * 8;
+            return 157 * 16;
         }
 
         @Override
@@ -49,8 +51,14 @@ public class MainActivity extends Activity {
         public View getView(int position, View convertView, ViewGroup parent) {
             if (convertView == null) {
                 convertView = getLayoutInflater().inflate(R.layout.list_item_bitmap_cache, mGridView, false);
-                convertView.getLayoutParams().width = mGridSideLength;
-                convertView.getLayoutParams().height = (mGridSideLength - UnitHelper.dipToPxInt(5) * 2) * 1200 / 1920 + 20;
+                int paddingLeft = convertView.getPaddingLeft();
+                int paddingRight = convertView.getPaddingRight();
+                int paddingTop = convertView.getPaddingTop();
+                int paddingBottom = convertView.getPaddingBottom();
+                int imageWidth = mGridItemWidth - paddingLeft - paddingRight;
+                int imageHeight = imageWidth * 1200 / 1920;
+                convertView.getLayoutParams().width = imageWidth + paddingLeft + paddingRight;
+                convertView.getLayoutParams().height = imageHeight + paddingTop + paddingBottom;
             }
 
             BitmapView bitmapView = (BitmapView) convertView.findViewById(R.id.bitmapView);

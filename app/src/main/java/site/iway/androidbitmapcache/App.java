@@ -17,7 +17,7 @@ public class App extends Application {
         super.onCreate();
         BitmapCache.setContext(this);
         BitmapCache.setLoaderCount(2);
-        BitmapCache.setLoaderThreadPriority(Thread.NORM_PRIORITY);
+        BitmapCache.setLoaderThreadPriority(Thread.MIN_PRIORITY);
         BitmapCache.setMaxRAMUsageForSingleBitmap(8 * 1024 * 1024);
         BitmapCache.setMaxRamUsageOfAllBitmaps(DeviceHelper.getHeapGrowthLimit(this) / 2);
         BitmapCache.setDownloaderClass(HttpFileDownloader.class);
