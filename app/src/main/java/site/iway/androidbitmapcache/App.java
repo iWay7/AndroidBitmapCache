@@ -16,7 +16,7 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         BitmapCache.setContext(this);
-        BitmapCache.setLoaderCount(2);
+        BitmapCache.setLoaderCount(4);
         BitmapCache.setLoaderThreadPriority(Thread.MIN_PRIORITY);
         BitmapCache.setMaxRAMUsageForSingleBitmap(8 * 1024 * 1024);
         BitmapCache.setMaxRamUsageOfAllBitmaps(DeviceHelper.getHeapGrowthLimit(this) / 2);
